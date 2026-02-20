@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useCart } from '@/context/CartContext'; // Menggunakan Global State
+import Toast from '@/components/Toast';
 
 interface Product {
   id: number;
@@ -13,6 +14,8 @@ interface Product {
 export default function CSRPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
   const { addToCart, cart } = useCart(); // Menggunakan Context API
 
   useEffect(() => {
@@ -28,8 +31,19 @@ export default function CSRPage() {
 
   if (loading) return <div className="p-10">Loading data di client...</div>;
 
+  const handleAddToCart = (product: Product) => {
+    addToCart(product);
+    setToastMessage(`${product.title} ditambahkan ke keranjang!`);
+    setShowToast(true);
+  };
+
   return (
     <main className="p-10">
+      <Toast 
+        show={showToast} 
+        message={toastMessage} 
+        onClose={() => setShowToast(false)} 
+      />
       <h1 className="text-2xl font-bold mb-4">Halaman CSR (Client-Side Rendering)</h1>
       <p className="mb-4 text-gray-600">Data di-load di browser. Interaktif (Bisa tambah ke cart).</p>
       <p className="mb-4 font-bold">Items di Cart: {cart.length}</p>
@@ -41,7 +55,7 @@ export default function CSRPage() {
             <h3 className="font-semibold">{product.title}</h3>
             <p>${product.price}</p>
             <button 
-              onClick={() => addToCart(product)}
+              onClick={() => handleAddToCart(product)}
               className="mt-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
             >
               Add to Cart
