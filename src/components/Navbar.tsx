@@ -13,6 +13,7 @@ export default function Navbar() {
     { href: '/ssg', label: 'SSG (Static)' },
     { href: '/ssr', label: 'SSR (Server)' },
     { href: '/csr', label: 'CSR (Client)' },
+    { href: '/cart', label: 'Cart 🛒' },
   ];
 
   return (
