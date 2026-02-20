@@ -2,10 +2,12 @@
 
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
+import { useTheme } from '@/context/ThemeContext';
 import { useState } from 'react';
 
 export default function Navbar() {
   const { cart } = useCart(); // Mengambil global state cart
+  const { theme, toggleTheme } = useTheme(); // theme switch
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
@@ -17,10 +19,10 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-gray-900 text-white p-4 sticky top-0 z-50 shadow-lg">
+    <nav className="text-white p-4 sticky top-0 z-50 shadow-lg bg-(--primary-blue)">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo / Brand */}
-        <Link href="/" className="text-xl font-bold hover:text-blue-400 transition">
+        <Link href="/" className="text-xl font-bold text-hover-light-blue transition">
           Tugas Web Platform
         </Link>
 
@@ -30,14 +32,21 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="hover:text-blue-300 transition-colors text-sm font-medium"
+              className="text-hover-light-blue transition-colors text-sm font-medium"
             >
               {link.label}
             </Link>
           ))}
-          
+          {/* theme toggle button */}
+          <button
+            onClick={toggleTheme}
+            className="ml-4 p-2 rounded hover:bg-(--light-blue)"
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
           {/* Cart Indicator (Demonstrasi Global State) */}
-          <div className="bg-blue-600 px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-2">
+          <div className="px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-2 bg-(--light-blue)">
             <span>🛒</span>
             <span>{cart.length}</span>
           </div>
@@ -62,13 +71,13 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="hover:text-blue-300"
+              className="text-hover-light-blue"
               onClick={() => setIsMenuOpen(false)}
             >
               {link.label}
             </Link>
           ))}
-          <div className="bg-blue-600 px-3 py-1 rounded-full text-sm font-semibold w-fit">
+          <div className="px-3 py-1 rounded-full text-sm font-semibold w-fit bg-(--light-blue)">
             Cart: {cart.length} Items
           </div>
         </div>
