@@ -1,7 +1,7 @@
-'use client'; // Wajib untuk komponen Client
+'use client';
 
 import { useEffect, useState } from 'react';
-import { useCart } from '@/context/CartContext'; // Menggunakan Global State
+import { useCart } from '@/context/CartContext';
 import ProductCard from '@/components/ProductCard';
 
 interface Product {
@@ -14,7 +14,7 @@ interface Product {
 export default function CSRPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const { cart } = useCart(); // Menggunakan Context API
+  const { cart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -26,11 +26,14 @@ export default function CSRPage() {
     fetchProducts();
   }, []);
 
+  const loaderClasses = "flex flex-col items-center justify-center min-h-screen bg-(--background) text-(--foreground)";
+
   if (loading)
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-(--background) text-(--foreground)">
+      <div className={loaderClasses}>
         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 mb-6"></div>
         <p className="text-lg font-medium">
+          Memuat data di client...
         </p>
       </div>
     );

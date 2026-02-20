@@ -1,8 +1,8 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { CartProvider } from "@/context/CartContext"; // Import provider
+import { CartProvider } from "@/context/CartContext";
 import { ThemeProvider } from "@/context/ThemeContext";
-import Navbar from "@/components/Navbar"; // Import Navbar
+import Navbar from "@/components/Navbar";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
 

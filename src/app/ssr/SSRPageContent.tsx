@@ -1,4 +1,4 @@
-'use client'; // Pindahkan 'use client' ke file ini
+'use client';
 
 import { useCart } from '@/context/CartContext';
 import ProductCard from '@/components/ProductCard';
@@ -17,7 +17,6 @@ export default function SSRPageContent({
   products: Product[];
   now: string;
 }) {
-  // server side page handles fetching; cards themselves manage adding/toasts
   return (
     <main className="p-10">
       <h1 className="text-2xl font-bold mb-4">Halaman SSR (Server-Side Rendering)</h1>

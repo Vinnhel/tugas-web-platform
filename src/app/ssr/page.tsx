@@ -1,6 +1,3 @@
-// SSR: Data di-fetch setiap ada request
-// HAPUS 'use client' dari sini!
-
 import SSRPageContent from './SSRPageContent';
 
 export const dynamic = 'force-dynamic'; 

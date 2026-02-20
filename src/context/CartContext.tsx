@@ -20,7 +20,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<Product[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Load cart dari localStorage saat pertama kali render
   useEffect(() => {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
@@ -29,7 +28,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setIsLoaded(true);
   }, []);
 
-  // Simpan cart ke localStorage setiap kali berubah
   useEffect(() => {
     if (isLoaded) {
       localStorage.setItem('cart', JSON.stringify(cart));
@@ -44,7 +42,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
-  if (!isLoaded) return null; // Prevent hydration mismatch
+  if (!isLoaded) return null;
 
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>

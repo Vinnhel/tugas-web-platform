@@ -1,4 +1,3 @@
-// src/app/ssg/page.tsx
 import ProductCard from '@/components/ProductCard';
 
 interface Product {

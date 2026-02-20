@@ -1,4 +1,4 @@
-'use client'; // Wajib karena menggunakan hook useState dan useCart
+'use client';
 
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
@@ -6,8 +6,8 @@ import { useTheme } from '@/context/ThemeContext';
 import { useState } from 'react';
 
 export default function Navbar() {
-  const { cart } = useCart(); // Mengambil global state cart
-  const { theme, toggleTheme } = useTheme(); // theme switch
+  const { cart } = useCart();
+  const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
@@ -21,12 +21,10 @@ export default function Navbar() {
   return (
     <nav className="text-white p-4 sticky top-0 z-50 shadow-lg bg-blue-600 dark:bg-blue-700">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo / Brand */}
         <Link href="/" className="text-xl font-bold text-hover-light-blue transition">
           Tugas Web Platform
         </Link>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 items-center">
           {navLinks.map((link) => (
             <Link
@@ -37,7 +35,6 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          {/* theme toggle button */}
           <button
             onClick={toggleTheme}
             className="ml-4 p-2 rounded hover:bg-blue-300 dark:hover:bg-blue-500 transition-transform duration-500"
@@ -47,14 +44,12 @@ export default function Navbar() {
               {theme === 'light' ? '🌙' : '☀️'}
             </span>
           </button>
-          {/* Cart Indicator (Demonstrasi Global State) */}
           <div className="px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-2 bg-blue-300 dark:bg-blue-500">
             <span>🛒</span>
             <span>{cart.length}</span>
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
           className="md:hidden focus:outline-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -66,7 +61,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
       {isMenuOpen && (
         <div className="md:hidden mt-4 flex flex-col space-y-3 bg-gray-800 p-4 rounded-lg shadow-inner">
           {navLinks.map((link) => (
