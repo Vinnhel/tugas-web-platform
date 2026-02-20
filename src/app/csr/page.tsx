@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useCart } from '@/context/CartContext'; // Menggunakan Global State
-import Toast from '@/components/Toast';
+import ProductCard from '@/components/ProductCard';
 
 interface Product {
   id: number;
@@ -14,12 +14,9 @@ interface Product {
 export default function CSRPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
-  const { addToCart, cart } = useCart(); // Menggunakan Context API
+  const { cart } = useCart(); // Menggunakan Context API
 
   useEffect(() => {
-    // Simulasi loading network
     const fetchProducts = async () => {
       const res = await fetch('https://dummyjson.com/products?limit=5&skip=10');
       const data = await res.json();
@@ -29,38 +26,24 @@ export default function CSRPage() {
     fetchProducts();
   }, []);
 
-  if (loading) return <div className="p-10">Loading data di client...</div>;
-
-  const handleAddToCart = (product: Product) => {
-    addToCart(product);
-    setToastMessage(`${product.title} ditambahkan ke keranjang!`);
-    setShowToast(true);
-  };
+  if (loading)
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-(--background) text-(--foreground)">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 mb-6"></div>
+        <p className="text-lg font-medium">
+        </p>
+      </div>
+    );
 
   return (
     <main className="p-10">
-      <Toast 
-        show={showToast} 
-        message={toastMessage} 
-        onClose={() => setShowToast(false)} 
-      />
       <h1 className="text-2xl font-bold mb-4">Halaman CSR (Client-Side Rendering)</h1>
       <p className="mb-4 text-gray-600">Data di-load di browser. Interaktif (Bisa tambah ke cart).</p>
       <p className="mb-4 font-bold">Items di Cart: {cart.length}</p>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {products.map((product: Product) => (
-          <div key={product.id} className="border p-4 rounded shadow border-green-200">
-            <img src={product.thumbnail} alt={product.title} className="h-32 w-full object-cover mb-2"/>
-            <h3 className="font-semibold">{product.title}</h3>
-            <p>${product.price}</p>
-            <button 
-              onClick={() => handleAddToCart(product)}
-              className="mt-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-            >
-              Add to Cart
-            </button>
-          </div>
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </main>

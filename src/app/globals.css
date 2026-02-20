@@ -4,7 +4,7 @@
 :root,
 [data-theme="light"] {
   --background: #ffffff;
-  --foreground: #171717;
+  
 
   /* Blue Theme Colors */
   --primary-blue: #3b82f6; /* Tailwind blue-500 */
@@ -12,32 +12,21 @@
   --dark-blue: #1d4ed8;    /* Tailwind blue-700 */
 }
 
-/* dark theme overrides */
+/* dark theme overrides: true dark mode colors */
 [data-theme="dark"] {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: #000000;
+  --foreground: #ffffff;
+  /* blue palette can stay similar or slightly darker if desired */
   --primary-blue: #2563eb;
   --light-blue: #3b82f6;
   --dark-blue: #1e3a8a;
 }
 
-/* prefer-color-scheme fallback */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* removed unsupported @theme rule */
 
 body {
-  background: var(--background);
+  /* important to override any utility classes on html/body */
+  background: var(--background) !important;
   color: var(--foreground);
 }
 

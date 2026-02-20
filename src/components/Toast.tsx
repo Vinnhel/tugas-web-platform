@@ -21,12 +21,15 @@ export default function Toast({ message, type = 'success', duration = 3000, show
     return () => clearTimeout(timer);
   }, [show, duration, onClose]);
 
-  if (!show) return null;
-
-  const bgColor = type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500';
+  const bgColor = type === 'success' ? 'bg-blue-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500';
 
   return (
-    <div className={`fixed top-4 right-4 ${bgColor} text-white px-6 py-3 rounded shadow-lg animate-pulse z-50`}>
+    // use opacity transition, element stays in DOM for animation
+    <div
+      className={`fixed top-4 right-4 ${bgColor} text-white px-6 py-3 rounded shadow-lg z-50 transition-opacity duration-500 ${
+        show ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}
+    >
       {message}
     </div>
   );

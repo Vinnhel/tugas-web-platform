@@ -18,14 +18,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
-      <body className={poppins.className}>
+      <body className={`${poppins.className} transition-colors duration-300`}>
         <ThemeProvider>
           <CartProvider>
             <Navbar />
-            <main className="min-h-screen">
-              {children}
+            <main className="min-h-screen flex flex-col items-center transition-colors duration-300">
+              <div className="w-full max-w-4xl px-4 py-8">
+                {children}
+              </div>
             </main>
-            <footer className="text-white text-center p-4 mt-10 bg-(--dark-blue)">
+            <footer className="text-white text-center p-4 mt-10 bg-blue-800 dark:bg-blue-600 transition-colors duration-300">
               <p>&copy; 2026 Tugas Web Platform. Dibuat dengan Next.js.</p>
             </footer>
           </CartProvider>

@@ -19,7 +19,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="text-white p-4 sticky top-0 z-50 shadow-lg bg-(--primary-blue)">
+    <nav className="text-white p-4 sticky top-0 z-50 shadow-lg bg-blue-600 dark:bg-blue-700">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo / Brand */}
         <Link href="/" className="text-xl font-bold text-hover-light-blue transition">
@@ -40,13 +40,15 @@ export default function Navbar() {
           {/* theme toggle button */}
           <button
             onClick={toggleTheme}
-            className="ml-4 p-2 rounded hover:bg-(--light-blue)"
+            className="ml-4 p-2 rounded hover:bg-blue-300 dark:hover:bg-blue-500 transition-transform duration-500"
             aria-label="Toggle theme"
           >
-            {theme === 'light' ? '🌙' : '☀️'}
+            <span className={theme === 'light' ? 'inline-block rotate-0' : 'inline-block rotate-180'}>
+              {theme === 'light' ? '🌙' : '☀️'}
+            </span>
           </button>
           {/* Cart Indicator (Demonstrasi Global State) */}
-          <div className="px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-2 bg-(--light-blue)">
+          <div className="px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-2 bg-blue-300 dark:bg-blue-500">
             <span>🛒</span>
             <span>{cart.length}</span>
           </div>
@@ -77,7 +79,7 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <div className="px-3 py-1 rounded-full text-sm font-semibold w-fit bg-(--light-blue)">
+          <div className="px-3 py-1 rounded-full text-sm font-semibold w-fit bg-blue-300 dark:bg-blue-500">
             Cart: {cart.length} Items
           </div>
         </div>
