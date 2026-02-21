@@ -41,7 +41,7 @@ export default function CSRPage() {
   return (
     <main className="p-10">
       <h1 className="text-2xl font-bold mb-4">Halaman CSR (Client-Side Rendering)</h1>
-      <p className="mb-4 text-gray-600">Data di-load di browser. Interaktif (Bisa tambah ke cart).</p>
+      <p className="mb-4 text-gray-600">Client-Side Rendering (CSR) adalah teknik di mana halaman web dirender di browser klien</p>
       <p className="mb-4 font-bold">Items di Cart: {cart.length}</p>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

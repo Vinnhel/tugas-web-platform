@@ -25,7 +25,7 @@ export default async function SSGPage() {
   return (
     <main className="p-10">
       <h1 className="text-2xl font-bold mb-4">Halaman SSG (Static Site Generation)</h1>
-      <p className="mb-4 text-gray-600">Data di-load saat build/revalidate. Refresh halaman tidak mengubah data segera.</p>
+      <p className="mb-4 text-gray-600">Pembuatan Situs Statis (Static Site Generation/SSG) melibatkan pembuatan seluruh situs web terlebih dahulu selama proses pembuatan, menghasilkan file HTML statis untuk setiap halaman</p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {products.map((product: Product) => (
           <ProductCard key={product.id} product={product} />

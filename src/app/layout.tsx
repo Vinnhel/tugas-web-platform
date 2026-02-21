@@ -23,7 +23,7 @@ export default function RootLayout({
           <CartProvider>
             <Navbar />
             <main className="min-h-screen flex flex-col items-center transition-colors duration-300">
-              <div className="w-full max-w-4xl px-4 py-8">
+              <div className="w-full max-w-6xl px-8 py-12">
                 {children}
               </div>
             </main>
