@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
-      <body className={`${poppins.className} transition-colors duration-300`}>
+      <body className={`${poppins.className} transition-colors duration-300 text-gray-900 dark:text-white`}>
         <ThemeProvider>
           <CartProvider>
             <Navbar />
